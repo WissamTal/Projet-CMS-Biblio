@@ -6,7 +6,6 @@ echo "🌌 Lancement automatique de Ma Biblio Galactique..."
 # Détecter l'OS
 OS="$(uname)"
 IS_WINDOWS=false
-
 if [[ "$OS" == "Darwin" ]]; then
   PLATFORM="macOS"
 elif [[ "$OS" == "Linux" ]]; then
@@ -27,6 +26,38 @@ fi
 echo "🖥️ Plateforme détectée : $PLATFORM"
 echo "🧠 Contexte : $( $IS_IN_VSCODE && echo 'VS Code' || echo 'Terminal normal')"
 sleep 1
+
+# Fonction pour installer un outil manquant
+install_if_missing() {
+  local cmd=$1
+  local pkg=$2
+  if ! command -v "$cmd" >/dev/null; then
+    echo "📦 $cmd est manquant. Installation de $pkg..."
+    if command -v apt-get >/dev/null; then
+      sudo apt-get install -y "$pkg"
+    elif command -v dnf >/dev/null; then
+      sudo dnf install -y "$pkg"
+    elif command -v pacman >/dev/null; then
+      sudo pacman -Sy --noconfirm "$pkg"
+    else
+      echo "❌ Impossible d’installer $pkg automatiquement."
+      exit 1
+    fi
+  else
+    echo "✅ $cmd détecté."
+  fi
+}
+
+# Vérifications Linux uniquement
+if [[ "$PLATFORM" == "Linux" ]]; then
+  echo "🔍 Vérification des dépendances système..."
+  install_if_missing python3 python3
+  install_if_missing pip3 python3-pip
+  install_if_missing node nodejs
+  install_if_missing npm npm
+  install_if_missing git git
+  python3 -m venv --help >/dev/null 2>&1 || install_if_missing python3-venv python3-venv
+fi
 
 # --- BACKEND ---
 echo "🔧 Installation backend..."

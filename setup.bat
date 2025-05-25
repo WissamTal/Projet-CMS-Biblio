@@ -1,57 +1,88 @@
 @echo off
+setlocal enabledelayedexpansion
+
 echo.
 echo 🚀 Initialisation de Ma Biblio Galactique (Windows)
 
-:: Vérifier Python
+:: Récupérer le répertoire racine
+cd /d "%~dp0"
+
+:: === PYTHON ===
+:check_python
 where python >nul 2>&1
 IF %ERRORLEVEL% NEQ 0 (
     echo ❌ Python n'est pas installé.
     echo 🔗 Ouverture de https://www.python.org/downloads/
     start https://www.python.org/downloads/
     pause
-    exit /b
+    goto check_python
 )
 
-:: Vérifier pip
+:: === PIP ===
+:check_pip
 where pip >nul 2>&1
 IF %ERRORLEVEL% NEQ 0 (
-    echo ❌ pip est manquant.
-    echo ➤ Tentative de récupération via ensurepip...
+    echo ❌ pip est manquant. Tentative de récupération...
     python -m ensurepip
+    python -m pip install --upgrade pip
+    where pip >nul 2>&1
+    IF %ERRORLEVEL% NEQ 0 (
+        echo ❌ pip toujours manquant.
+        pause
+        goto check_pip
+    )
 )
 
-:: Vérifier Node.js / npm
+:: === NODE / NPM ===
+:check_npm
 where npm >nul 2>&1
 IF %ERRORLEVEL% NEQ 0 (
-    echo ❌ Node.js / npm n'est pas installé.
+    echo ❌ Node.js / npm non trouvé.
     echo 🔗 Ouverture de https://nodejs.org
     start https://nodejs.org
     pause
-    exit /b
+    goto check_npm
 )
 
-echo ✅ Dépendances système OK.
+echo ✅ Dépendances système disponibles !
 echo.
 
-:: --- BACKEND ---
-echo 🛠️ Configuration backend (Django)...
+:: === BACKEND ===
+echo 🛠️ Configuration du backend (Django)...
 cd backend
-python -m venv .venv
+
+IF NOT EXIST .venv (
+    python -m venv .venv
+)
+
 call .venv\Scripts\activate
 pip install --upgrade pip
 pip install -r requirements.txt
-start cmd /k "cd backend && .venv\Scripts\activate && python manage.py runserver"
+
+:: Lancer le backend dans un terminal
+start cmd /k "cd /d %cd% && call .venv\Scripts\activate && python manage.py runserver"
+
 cd ..
 
-:: --- FRONTEND ---
-echo 💻 Configuration frontend (Angular)...
+:: === FRONTEND ===
+echo 💻 Configuration du frontend (Angular)...
 cd frontend
-npm install
-start cmd /k "cd frontend && npm run start"
+npm install --legacy-peer-deps
+
+start cmd /k "cd /d %cd% && npm run start"
+
 cd ..
+
+:: === NAVIGATEUR ===
+echo ⏳ Attente du chargement...
+timeout /t 5 >nul
+
+echo 🌐 Ouverture de l'app dans le navigateur...
+start http://localhost:4200
 
 echo.
-echo ✅ Application prête !
+echo ✅ L'application est prête !
 echo 🔗 Frontend : http://localhost:4200
 echo 🔗 Backend API : http://localhost:8000/api/
+
 pause
