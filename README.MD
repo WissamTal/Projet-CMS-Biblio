@@ -54,6 +54,9 @@ Cela :
 - Lance les deux serveurs
 - Ouvre automatiquement le navigateur
 
+> [Warning]
+> Don't execute the code without commenting the test cases.
+
 ---
 
 ### 🔸 Sous **Linux/macOS/WSL**
