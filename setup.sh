@@ -62,6 +62,9 @@ elif $IS_WINDOWS; then
 fi
 
 # Ouvrir navigateur
+echo "🌐 Attente du démarrage complet (5s)..."
+sleep 5
+
 echo "🌐 Ouverture de l'app dans le navigateur..."
 if [[ "$OS" == "Linux" ]]; then
   xdg-open http://localhost:4200 > /dev/null 2>&1
