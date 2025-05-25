@@ -34,7 +34,16 @@ export class RegisterComponent implements OnInit {
       const formData = this.registerForm.value;
 
       this.authService.register(formData).subscribe({
-        next: () => this.router.navigate(['/login']),
+        next: () => {
+          // ✅ Auto-login juste après inscription
+          this.authService.login({
+            username: formData.username,
+            password: formData.password
+          }).subscribe({
+            next: () => this.router.navigate(['/books']),
+            error: () => this.router.navigate(['/login'])  // fallback
+          });
+        },
         error: (err) => {
           console.error(err);
           this.errorMessage = 'Erreur lors de la création du compte.';
