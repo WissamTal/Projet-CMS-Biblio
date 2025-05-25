@@ -18,7 +18,14 @@ else
   PLATFORM="Inconnu"
 fi
 
+# Détecter VS Code
+IS_IN_VSCODE=false
+if [[ "$TERM_PROGRAM" == "vscode" ]] || [[ "$VSCODE_GIT_IPC_HANDLE" != "" ]]; then
+  IS_IN_VSCODE=true
+fi
+
 echo "🖥️ Plateforme détectée : $PLATFORM"
+echo "🧠 Contexte : $( $IS_IN_VSCODE && echo 'VS Code' || echo 'Terminal normal')"
 sleep 1
 
 # --- BACKEND ---
@@ -37,7 +44,12 @@ python manage.py migrate
 
 # Lancer Django
 if [[ "$OS" == "Linux" ]]; then
-  gnome-terminal -- bash -c "cd $BACKEND_PATH && source .venv/bin/activate && python manage.py runserver; exec bash"
+  if $IS_IN_VSCODE; then
+    echo "📦 [VS Code] Lancement du backend dans ce terminal..."
+    python manage.py runserver &
+  else
+    gnome-terminal -- bash -c "cd $BACKEND_PATH && source .venv/bin/activate && python manage.py runserver; exec bash"
+  fi
 elif [[ "$OS" == "Darwin" ]]; then
   osascript -e 'tell app "Terminal" to do script "cd '"$BACKEND_PATH"' && source .venv/bin/activate && python manage.py runserver"'
 elif $IS_WINDOWS; then
@@ -54,17 +66,23 @@ npm install --legacy-peer-deps > /dev/null
 
 # Lancer Angular
 if [[ "$OS" == "Linux" ]]; then
-  gnome-terminal -- bash -c "cd $FRONTEND_PATH && npm run start; exec bash"
+  if $IS_IN_VSCODE; then
+    echo "📦 [VS Code] Lancement du frontend dans ce terminal..."
+    npm run start &
+  else
+    gnome-terminal -- bash -c "cd $FRONTEND_PATH && npm run start; exec bash"
+  fi
 elif [[ "$OS" == "Darwin" ]]; then
   osascript -e 'tell app "Terminal" to do script \"cd '"$FRONTEND_PATH"' && npm run start\"'
 elif $IS_WINDOWS; then
   cmd.exe /C "start cmd /k cd frontend && npm run start"
 fi
 
-# Ouvrir navigateur
-echo "🌐 Attente du démarrage complet (5s)..."
+# Pause pour laisser le temps aux serveurs de démarrer
+echo "⏳ Attente de 5 secondes pour le lancement complet..."
 sleep 5
 
+# Ouvrir navigateur
 echo "🌐 Ouverture de l'app dans le navigateur..."
 if [[ "$OS" == "Linux" ]]; then
   xdg-open http://localhost:4200 > /dev/null 2>&1
