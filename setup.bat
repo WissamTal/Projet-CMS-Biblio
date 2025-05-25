@@ -73,8 +73,15 @@ cd frontend
 npm install --legacy-peer-deps
 
 echo Lancement du frontend...
-npm run start
+echo. > front.log
+npm run start >> front.log 2>&1
 
+if %ERRORLEVEL% NEQ 0 (
+    echo ❌ Erreur lors du lancement du frontend.
+    echo 🔍 Consultez le fichier frontend/front.log pour les détails.
+    pause
+    exit /b
+)
 cd ..
 
 :: === NAVIGATEUR ===
