@@ -54,8 +54,6 @@ Cela :
 - Lance les deux serveurs
 - Ouvre automatiquement le navigateur
 
-> [Warning]
-> Don't execute the code without commenting the test cases.
 
 ---
 
@@ -70,6 +68,7 @@ Cela :
 
 
 ### Pour le Backend
+#### Sous Linux
 - cd backend
 - python3 -m venv .venv
 - source .venv/bin/activate
@@ -77,7 +76,16 @@ Cela :
 - python manage.py migrate
 - python manage.py runserver
 
+#### Sous Windows
+- cd backend
+- python -m venv .venv
+- .venv\Scripts\activate
+- pip install -r requirements.txt
+- python manage.py migrate
+- python manage.py runserver
+
 ### Pour le Frontend
+#### Sous Windows et Linux
 - cd frontend
 - npm install
 - npm run start
