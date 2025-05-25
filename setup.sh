@@ -24,10 +24,12 @@ sleep 1
 # --- BACKEND ---
 echo "🔧 Installation backend..."
 cd backend || exit
+BACKEND_PATH=$(pwd)
 
 if [ ! -d ".venv" ]; then
   python3 -m venv .venv
 fi
+
 source .venv/bin/activate
 pip install --upgrade pip > /dev/null
 pip install -r requirements.txt > /dev/null
@@ -35,11 +37,11 @@ python manage.py migrate
 
 # Lancer Django
 if [[ "$OS" == "Linux" ]]; then
-  gnome-terminal -- bash -c "cd backend && source .venv/bin/activate && python manage.py runserver; exec bash"
+  gnome-terminal -- bash -c "cd $BACKEND_PATH && source .venv/bin/activate && python manage.py runserver; exec bash"
 elif [[ "$OS" == "Darwin" ]]; then
-  osascript -e 'tell app "Terminal" to do script "cd '"$(pwd)"' && cd backend && source .venv/bin/activate && python manage.py runserver"'
+  osascript -e 'tell app "Terminal" to do script "cd '"$BACKEND_PATH"' && source .venv/bin/activate && python manage.py runserver"'
 elif $IS_WINDOWS; then
-  cmd.exe /C "start cmd /k cd backend && .venv\Scripts\activate && python manage.py runserver"
+  cmd.exe /C "start cmd /k cd backend && .venv\\Scripts\\activate && python manage.py runserver"
 fi
 
 cd ..
@@ -47,20 +49,20 @@ cd ..
 # --- FRONTEND ---
 echo "💻 Installation frontend..."
 cd frontend || exit
+FRONTEND_PATH=$(pwd)
 npm install --legacy-peer-deps > /dev/null
 
 # Lancer Angular
 if [[ "$OS" == "Linux" ]]; then
-  gnome-terminal -- bash -c "cd frontend && npm run start; exec bash"
+  gnome-terminal -- bash -c "cd $FRONTEND_PATH && npm run start; exec bash"
 elif [[ "$OS" == "Darwin" ]]; then
-  osascript -e 'tell app "Terminal" to do script "cd '"$(pwd)"' && cd frontend && npm run start"'
+  osascript -e 'tell app "Terminal" to do script \"cd '"$FRONTEND_PATH"' && npm run start\"'
 elif $IS_WINDOWS; then
   cmd.exe /C "start cmd /k cd frontend && npm run start"
 fi
 
 # Ouvrir navigateur
 echo "🌐 Ouverture de l'app dans le navigateur..."
-
 if [[ "$OS" == "Linux" ]]; then
   xdg-open http://localhost:4200 > /dev/null 2>&1
 elif [[ "$OS" == "Darwin" ]]; then
