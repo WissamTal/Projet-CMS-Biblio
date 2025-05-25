@@ -39,6 +39,10 @@ Ce projet utilise **SQLite** (base par défaut Django), il n’y a **aucune conf
 
 ---
 
+Clone le repo ou télécharger le zip (puis l'extraire) sur votre espace de travail local. Une fois le dossier récupérer, allez dans le dossier. 
+Deux scripts se trouvent en fonction de votre OS. 
+Choisissez le script qui vous correspond et suivez les indications ci-dessous.
+
 ## ▶️ LANCEMENT AUTOMATIQUE
 
 ### 🔹 Sous **Windows**
