@@ -2,9 +2,9 @@
 setlocal enabledelayedexpansion
 
 echo.
-echo 🚀 Initialisation de Ma Biblio Galactique (Windows)
+echo Initialisation de Ma Biblio Galactique (Windows)
 
-:: Récupérer le répertoire racine
+:: Aller à la racine du projet
 cd /d "%~dp0"
 
 :: === PYTHON ===
@@ -44,7 +44,7 @@ IF %ERRORLEVEL% NEQ 0 (
     goto check_npm
 )
 
-echo ✅ Dépendances système disponibles !
+echo Dépendances système disponibles !
 echo.
 
 :: === BACKEND ===
@@ -59,7 +59,10 @@ call .venv\Scripts\activate
 pip install --upgrade pip
 pip install -r requirements.txt
 
-:: Lancer le backend dans un terminal
+:: Migrer la base de données
+python manage.py migrate
+
+:: Lancer le backend dans un terminal séparé
 start cmd /k "cd /d %cd% && call .venv\Scripts\activate && python manage.py runserver"
 
 cd ..
@@ -74,7 +77,7 @@ start cmd /k "cd /d %cd% && npm run start"
 cd ..
 
 :: === NAVIGATEUR ===
-echo ⏳ Attente du chargement...
+echo Attente du chargement...
 timeout /t 5 >nul
 
 echo 🌐 Ouverture de l'app dans le navigateur...
