@@ -1,0 +1,25 @@
+<div class="detail-wrapper" *ngIf="book; else loading">
+  <div class="container detail-card">
+    <div class="card-body">
+      <h2 class="card-title text-glow text-center mb-3">{{ book.title }}</h2>
+      <h5 class="card-subtitle text-author text-center mb-4">{{ book.author }}</h5>
+
+      <p *ngIf="book.summary" class="card-text">
+        <strong class="text-label">Résumé :</strong> {{ book.summary }}
+      </p>
+
+      <p *ngIf="book.isbn" class="card-text">
+        <strong class="text-label">ISBN :</strong> {{ book.isbn }}
+      </p>
+    </div>
+
+    <div class="card-footer d-flex justify-content-between">
+      <a class="btn btn-outline-info btn-sm" [routerLink]="['/books', book.id, 'edit']">✏️ Modifier</a>
+      <button class="btn btn-outline-danger btn-sm" (click)="onDelete()">🗑️ Supprimer</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p class="text-center mt-5 text-muted">🌌 Chargement du livre...</p>
+</ng-template>

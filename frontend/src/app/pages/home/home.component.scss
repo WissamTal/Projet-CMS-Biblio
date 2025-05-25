@@ -1,0 +1,30 @@
+.home-wrapper {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+}
+
+.text-glow {
+  text-shadow: 0 0 10px #4a90e2, 0 0 20px #4a90e2;
+}
+
+.btn-space {
+  background: linear-gradient(135deg, #4a90e2, #8e44ad);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: 0.3s ease;
+
+  &:hover {
+    opacity: 0.92;
+    transform: scale(1.02);
+  }
+}

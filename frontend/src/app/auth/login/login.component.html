@@ -1,0 +1,38 @@
+<div class="container login-page">
+  <div class="row justify-content-center">
+    <div class="col-md-6 login-card">
+      <h2 class="mb-4 text-center text-glow">🚀 Connexion</h2>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="mb-3">
+          <label for="username" class="form-label">Nom d'utilisateur</label>
+          <input type="text" id="username" formControlName="username" class="form-control bg-input" required />
+        </div>
+        <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="text-danger">
+          <small>Nom d'utilisateur requis.</small>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Mot de passe</label>
+          <input type="password" id="password" formControlName="password" class="form-control bg-input" required />
+        </div>
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
+          <small *ngIf="loginForm.get('password')?.errors?.['required']">Mot de passe requis.</small>
+          <small *ngIf="loginForm.get('password')?.errors?.['minlength']">6 caractères minimum.</small>
+        </div>
+
+        <button type="submit" class="btn btn-space w-100 mt-3" [disabled]="loginForm.invalid">
+          🌌 Se connecter
+        </button>
+      </form>
+
+      <div class="text-center mt-3">
+        <p>Pas encore de compte ? <a routerLink="/register" class="text-info">Créer un compte</a></p>
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+        {{ errorMessage }}
+      </div>
+    </div>
+  </div>
+</div>

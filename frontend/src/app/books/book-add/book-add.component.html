@@ -1,0 +1,37 @@
+<div class="add-book-wrapper">
+  <div class="container add-book-card">
+    <h2 class="mb-4 text-center text-glow">{{ formTitle }}</h2>
+
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="mb-3">
+        <label for="title" class="form-label">Titre</label>
+        <input type="text" id="title" formControlName="title" class="form-control bg-input" required />
+        <div *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.touched" class="text-danger mt-1">
+          <small>Le titre est requis.</small>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="author" class="form-label">Auteur</label>
+        <input type="text" id="author" formControlName="author" class="form-control bg-input" required />
+        <div *ngIf="bookForm.get('author')?.invalid && bookForm.get('author')?.touched" class="text-danger mt-1">
+          <small>L'auteur est requis.</small>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="summary" class="form-label">Résumé</label>
+        <textarea id="summary" formControlName="summary" class="form-control bg-input" rows="3"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="isbn" class="form-label">ISBN</label>
+        <input type="text" id="isbn" formControlName="isbn" class="form-control bg-input" />
+      </div>
+
+      <button type="submit" class="btn btn-space w-100 mt-3" [disabled]="bookForm.invalid">
+        {{ submitLabel }}
+      </button>
+    </form>
+  </div>
+</div>

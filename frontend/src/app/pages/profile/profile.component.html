@@ -1,0 +1,75 @@
+<div class="profile-wrapper">
+  <div class="profile-card">
+    <h2 class="text-glow mb-4">👤 Mon Profil</h2>
+
+    <!-- Infos de base -->
+    <p><strong>Nom d'utilisateur :</strong> {{ username }}</p>
+    <p><strong>Email actuel :</strong> {{ email }}</p>
+
+    <!-- Bouton pour activer le mode édition -->
+    <button
+      *ngIf="!editMode"
+      class="btn btn-edit mt-3"
+      (click)="enableEdit()"
+    >
+      ✏️ Modifier mon profil
+    </button>
+
+
+    <!-- Formulaire d'édition -->
+    <form *ngIf="editMode" [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="mt-4">
+      <div class="mb-3">
+        <label for="username" class="form-label">Nom d'utilisateur</label>
+        <input
+          id="username"
+          type="text"
+          class="form-control bg-input"
+          formControlName="username"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Nouvel email</label>
+        <input
+          id="email"
+          type="email"
+          class="form-control bg-input"
+          formControlName="email"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Nouveau mot de passe</label>
+        <input
+          id="password"
+          type="password"
+          class="form-control bg-input"
+          formControlName="password"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="password2" class="form-label">Confirmer le mot de passe</label>
+        <input
+          id="password2"
+          type="password"
+          class="form-control bg-input"
+          formControlName="password2"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-space w-100"
+        [disabled]="profileForm.invalid"
+      >
+        💾 Enregistrer les modifications
+      </button>
+    </form>
+
+    <!-- Message de retour -->
+    <p class="text-success mt-3" *ngIf="message">{{ message }}</p>
+
+    <!-- Bouton retour -->
+    <a routerLink="/books" class="btn btn-return mt-3">← Retour à mes livres</a>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  font-family: 'Inter', sans-serif;
+  color: #ffffff;
+  padding: 2rem;
+}
+.navbar {
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364); // ou image spatiale si tu veux
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: 'Inter', sans-serif;
+}
+
+.shadow-space {
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+}
+
+.text-glow {
+  text-shadow: 0 0 6px #4a90e2, 0 0 12px #4a90e2;
+}
+
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}

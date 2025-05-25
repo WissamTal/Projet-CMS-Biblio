@@ -1,0 +1,47 @@
+<div class="container register-page">
+  <div class="row justify-content-center">
+    <div class="col-md-6 register-card">
+      <h2 class="mb-4 text-center text-glow">🪐 Créer un compte</h2>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" formControlName="email" class="form-control bg-input" required />
+        </div>
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-danger">
+          <small *ngIf="registerForm.get('email')?.errors?.['required']">Email requis.</small>
+          <small *ngIf="registerForm.get('email')?.errors?.['email']">Format invalide.</small>
+        </div>
+
+        <div class="mb-3">
+          <label for="username" class="form-label">Nom d'utilisateur</label>
+          <input type="text" id="username" formControlName="username" class="form-control bg-input" required />
+        </div>
+        <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="text-danger">
+          <small>Nom d'utilisateur requis.</small>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Mot de passe</label>
+          <input type="password" id="password" formControlName="password" class="form-control bg-input" required />
+        </div>
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-danger">
+          <small *ngIf="registerForm.get('password')?.errors?.['required']">Mot de passe requis.</small>
+          <small *ngIf="registerForm.get('password')?.errors?.['minlength']">6 caractères minimum.</small>
+        </div>
+
+        <button type="submit" class="btn btn-space w-100 mt-3" [disabled]="registerForm.invalid">
+          🌠 S'inscrire
+        </button>
+      </form>
+
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+        {{ errorMessage }}
+      </div>
+
+      <div class="text-center mt-3">
+        <a routerLink="/login" class="text-info">Déjà inscrit ? Se connecter</a>
+      </div>
+    </div>
+  </div>
+</div>

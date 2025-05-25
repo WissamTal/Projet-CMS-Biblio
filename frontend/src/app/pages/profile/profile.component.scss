@@ -1,0 +1,128 @@
+.profile-wrapper {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: 'Inter', sans-serif;
+  color: #ffffff;
+  padding: 3rem 1rem;
+}
+
+.profile-card {
+  background-color: #121c2d;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.05);
+  width: 100%;
+  max-width: 500px;
+  animation: fadeIn 0.7s ease-in-out;
+}
+
+.text-glow {
+  text-shadow: 0 0 6px #4a90e2, 0 0 12px #4a90e2;
+}
+
+.bg-input {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+
+  &:focus {
+    background-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 0 2px #4a90e2;
+    color: #fff;
+  }
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.btn-space {
+  background: linear-gradient(135deg, #4a90e2, #8e44ad);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem;
+  border-radius: 8px;
+  transition: 0.3s ease;
+
+  &:hover {
+    opacity: 0.92;
+    transform: scale(1.01);
+  }
+}
+
+.btn-outline-light,
+.btn-outline-info {
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+  }
+}
+
+.text-success {
+  color: #3ddc97 !important;
+  font-weight: 500;
+  text-shadow: 0 0 4px rgba(61, 220, 151, 0.3);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn-edit {
+  background: linear-gradient(135deg, #4a90e2, #8e44ad);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.03);
+    opacity: 0.9;
+    box-shadow: 0 0 10px rgba(138, 201, 255, 0.3);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.6);
+  }
+}
+
+.btn-return {
+  background: linear-gradient(135deg, #203a43, #2c5364);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  margin-left: 1rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 10px rgba(138, 201, 255, 0.3);
+    opacity: 0.95;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.5);
+  }
+}
+
+

@@ -1,0 +1,125 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+  color: #ffffff;
+}
+
+// Titre et champ de recherche
+.book-list-header {
+  flex-wrap: wrap;
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  input {
+    min-width: 250px;
+  }
+}
+
+// Rechercher input
+.bg-input {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  &:focus {
+    background-color: rgba(255, 255, 255, 0.12);
+    outline: none;
+    box-shadow: 0 0 0 2px #4a90e2;
+  }
+}
+
+// 🌌 Carte cosmique
+.book-card {
+  text-align: center;
+  background-color: #121c2d;
+  color: #ffffff;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 15px rgba(0, 255, 255, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 22px rgba(0, 255, 255, 0.12);
+  }
+
+  .card-body {
+    padding: 0;
+  }
+
+  .card-footer {
+    background: transparent;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 1rem;
+    padding: 0.75rem 0 0;
+  }
+}
+.card-text {
+  text-align: left;
+  color: #aab3c5
+}
+
+.text-author {
+  color: #84c5f4;
+  text-shadow: 0 0 6px rgba(132, 197, 244, 0.4);
+  font-style: italic;
+}
+
+// Glow titre
+.text-glow {
+  text-shadow: 0 0 6px #4a90e2, 0 0 14px #4a90e2;
+  color: #4a90e2
+}
+
+.no-books-message {
+  color: #9fd3ff; // bleu pâle lisible
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-shadow: 0 0 6px rgba(74, 144, 226, 0.2);
+  margin-top: 3rem;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.suggestion-list {
+  z-index: 1050;
+  max-height: 250px;
+  overflow-y: auto;
+  background-color: #121c2d;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0, 255, 255, 0.08);
+
+  li {
+    background-color: transparent;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0.65rem 1rem;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+  }
+}
+

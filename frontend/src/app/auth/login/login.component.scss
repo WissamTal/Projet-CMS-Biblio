@@ -1,0 +1,92 @@
+// 🌌 Fond spatial
+:host {
+  display: block;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+}
+
+// Centrage global
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Carte de connexion
+.login-card {
+  background-color: #121c2d;
+  border-radius: 1.5rem;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.05);
+  width: 100%;
+  max-width: 400px;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+// Champs de formulaire
+.bg-input {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #ffffff;
+
+  &:focus {
+    background-color: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 0 0 2px #4a90e2;
+    color: #fff;
+  }
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+// Bouton de connexion
+.btn-space {
+  background: linear-gradient(135deg, #4a90e2, #8e44ad);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem;
+  border-radius: 8px;
+
+  &:hover {
+    opacity: 0.92;
+    transform: scale(1.01);
+  }
+}
+
+// Texte lumineux
+.text-glow {
+  text-shadow: 0 0 5px #4a90e2, 0 0 12px #4a90e2;
+}
+
+// Animation d’entrée
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Lien
+a {
+  text-decoration: none;
+  color: #00f2ff;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Message d'erreur (garde le rouge pour accessibilité)
+.text-danger {
+  color: #ff6b6b !important;
+}
