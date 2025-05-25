@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, serializers
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -8,6 +8,8 @@ from .serializers import RegisterSerializer
 from django.contrib.auth.models import User
 
 from .serializers import CustomTokenObtainPairSerializer
+from .validators import validate_password_strength
+
 
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -41,6 +43,11 @@ class ProfileView(APIView):
         if password:
             if password != password2:
                 return Response({'error': 'Les mots de passe ne correspondent pas'}, status=400)
+            try:
+                validate_password_strength(password)
+            except serializers.ValidationError as e:
+                return Response({'error': str(e.detail[0])}, status=400)
+
             user.set_password(password)
 
         user.save()

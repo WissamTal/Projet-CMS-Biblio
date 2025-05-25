@@ -1,20 +1,22 @@
 <nav
   *ngIf="isLoggedIn()"
-  class="navbar navbar-expand-lg navbar-dark px-4 py-3 shadow-space"
+  class="navbar navbar-expand-lg navbar-dark px-4 py-3 shadow-space space-navbar"
 >
   <a class="navbar-brand fw-bold text-glow" routerLink="/">🌌 Ma Biblio</a>
 
-  <div class="ms-auto d-flex align-items-center gap-3">
-   <span
-     class="text-light fw-light me-3 username-link"
-     role="button"
-     (click)="goToProfile()"
-   >
-  👤 {{ username }}
-</span>
-    <a class="btn btn-outline-light" routerLink="/books">📚 Mes livres</a>
-    <a class="btn btn-outline-info" routerLink="/books/add">➕ Ajouter</a>
-    <button class="btn btn-warning text-dark fw-semibold" (click)="logout()">🔓 Déconnexion</button>
+  <div class="ms-auto d-flex align-items-center gap-3 flex-wrap">
+    <span
+      class="btn-profile"
+      role="button"
+      (click)="goToProfile()"
+      title="Voir le profil"
+    >
+      👤 {{ username }}
+    </span>
+
+    <a class="btn btn-galaxy" routerLink="/books">📚 Mes livres</a>
+    <a class="btn btn-galaxy" routerLink="/books/add">➕ Ajouter</a>
+    <button class="btn btn-galaxy-danger" (click)="logout()">🚪 Déconnexion</button>
   </div>
 </nav>
 

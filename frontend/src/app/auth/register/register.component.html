@@ -25,9 +25,8 @@
           <label for="password" class="form-label">Mot de passe</label>
           <input type="password" id="password" formControlName="password" class="form-control bg-input" required />
         </div>
-        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-danger">
-          <small *ngIf="registerForm.get('password')?.errors?.['required']">Mot de passe requis.</small>
-          <small *ngIf="registerForm.get('password')?.errors?.['minlength']">6 caractères minimum.</small>
+        <div *ngIf="registerForm.get('password')?.errors?.['strongPassword'] && registerForm.get('password')?.touched" class="text-danger">
+          <small>Le mot de passe doit contenir au moins 14 caractères, une majuscule, une minuscule, un chiffre et un symbole.</small>
         </div>
 
         <button type="submit" class="btn btn-space w-100 mt-3" [disabled]="registerForm.invalid">

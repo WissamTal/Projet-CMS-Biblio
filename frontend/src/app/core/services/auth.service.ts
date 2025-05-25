@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import {ToastrService} from 'ngx-toastr';
 
 @Injectable({
@@ -67,6 +67,20 @@ export class AuthService {
 
   getUserProfile(): Observable<{ username: string; email: string }> {
     return this.http.get<{ username: string; email: string }>(`${this.apiUrl}/me/`);
+  }
+
+  refreshToken() {
+    const refresh = localStorage.getItem('refresh_token');
+    if (!refresh) return throwError(() => new Error('No refresh token'));
+
+    return this.http.post<{ access: string }>(
+      'http://localhost:8000/api/users/token/refresh/',
+      { refresh }
+    ).pipe(
+      tap((res) => {
+        localStorage.setItem('access_token', res.access);
+      })
+    );
   }
 
 

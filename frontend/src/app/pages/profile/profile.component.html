@@ -56,6 +56,12 @@
           formControlName="password2"
         />
       </div>
+      <div *ngIf="profileForm.get('password')?.errors?.['strongPassword'] && profileForm.get('password')?.touched" class="text-danger mb-2">
+        <small>
+          Le mot de passe doit contenir au moins 14 caractères, une majuscule, une minuscule, un chiffre et un symbole.
+        </small>
+      </div>
+
 
       <button
         type="submit"

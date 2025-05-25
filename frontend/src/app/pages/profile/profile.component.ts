@@ -3,6 +3,7 @@ import { AuthService } from '../../core/services/auth.service';
 import {RouterLink} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {strongPasswordValidator} from '../../core/validators/password.validator';
 
 @Component({
   selector: 'app-profile',
@@ -32,7 +33,7 @@ export class ProfileComponent implements OnInit {
         this.profileForm = this.fb.group({
           username: [profile.username, [Validators.required]],
           email: [profile.email, [Validators.required, Validators.email]],
-          password: [''],
+          password: ['', [strongPasswordValidator]],
           password2: ['']
         });
       },

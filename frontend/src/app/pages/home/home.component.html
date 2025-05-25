@@ -7,7 +7,7 @@
 
     <div class="d-flex justify-content-center gap-3 flex-wrap">
       <a *ngIf="!isLoggedIn()" routerLink="/login" class="btn btn-space">🚀 Connexion</a>
-      <a *ngIf="!isLoggedIn()" routerLink="/register" class="btn btn-outline-light">Créer un compte</a>
+      <a *ngIf="!isLoggedIn()" routerLink="/register" class="btn btn-space">Créer un compte</a>
       <a *ngIf="isLoggedIn()" routerLink="/books" class="btn btn-outline-info">📚 Mes livres</a>
     </div>
   </div>

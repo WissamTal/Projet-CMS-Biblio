@@ -6,25 +6,71 @@
   color: #ffffff;
   padding: 2rem;
 }
-.navbar {
-  background: linear-gradient(to right, #0f2027, #203a43, #2c5364); // ou image spatiale si tu veux
+
+.space-navbar {
+  background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  font-family: 'Inter', sans-serif;
 }
 
 .shadow-space {
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.08);
 }
 
 .text-glow {
-  text-shadow: 0 0 6px #4a90e2, 0 0 12px #4a90e2;
+  text-shadow: 0 0 6px #4a90e2, 0 0 14px #4a90e2;
+  color: #4a90e2;
 }
 
 .btn {
-  transition: all 0.3s ease;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 0.45rem 1.4rem;
+  transition: all 0.3s ease-in-out;
+  min-width: 160px;
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.15);
 }
 
-.btn:hover {
-  transform: translateY(-1px);
-  opacity: 0.95;
+.btn-galaxy {
+  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid #4a90e2;
+  color: #4a90e2;
+
+  &:hover {
+    background: #4a90e2;
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(74, 144, 226, 0.6);
+    transform: translateY(-2px);
+  }
 }
+
+.btn-galaxy-danger {
+  background: #e74c3c;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 0 10px rgba(231, 76, 60, 0.2);
+
+  &:hover {
+    background: #c0392b;
+    box-shadow: 0 0 15px rgba(231, 76, 60, 0.6);
+    transform: translateY(-2px);
+  }
+}
+
+.btn-profile {
+  padding: 0.45rem 1rem;
+  color: #4a90e2;
+  border: 2px solid #4a90e2;
+  background: rgba(74, 144, 226, 0.05);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:hover {
+    background-color: rgba(74, 144, 226, 0.15);
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(74, 144, 226, 0.4);
+    transform: translateY(-2px);
+  }
+}
+
