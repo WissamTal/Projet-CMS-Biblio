@@ -48,7 +48,7 @@ echo Dépendances système disponibles !
 echo.
 
 :: === BACKEND ===
-echo 🛠️ Configuration du backend (Django)...
+echo Configuration du backend (Django)...
 cd backend
 
 IF NOT EXIST .venv (
@@ -68,11 +68,12 @@ start cmd /k "cd /d %cd% && call .venv\Scripts\activate && python manage.py runs
 cd ..
 
 :: === FRONTEND ===
-echo 💻 Configuration du frontend (Angular)...
+echo Configuration du frontend (Angular)...
 cd frontend
 npm install --legacy-peer-deps
 
-start cmd /k "cd /d %cd% && npm run start"
+echo Lancement du frontend...
+npm run start
 
 cd ..
 
